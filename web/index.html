@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja de Discos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="loginView" class="login-page">
+    <form id="loginForm" class="login-card">
+      <div class="brand-mark">DS</div>
+      <p class="eyebrow">CONTROLE DE ESTOQUE</p>
+      <h1>Loja de Discos</h1>
+      <p class="muted">Entre para gerenciar seus discos.</p>
+      <label for="email">E-mail</label>
+      <input id="email" type="email" placeholder="seu@email.com" required>
+      <label for="senha">Senha</label>
+      <input id="senha" type="password" placeholder="Sua senha" required>
+      <button class="button primary full" type="submit">Entrar</button>
+      <p id="loginMessage" class="message"></p>
+    </form>
+  </section>
+
+  <div id="appView" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark small">DS</span><span>Loja de Discos</span></div>
+      <p class="nav-label">MENU PRINCIPAL</p>
+      <button class="nav-item active" data-section="dashboard"><span>▦</span> Visão geral</button>
+      <button class="nav-item" data-section="discos"><span>◉</span> Discos</button>
+      <button class="nav-item" data-section="movimentacoes"><span>⇄</span> Movimentar estoque</button>
+      <div class="sidebar-bottom">
+        <div class="user-avatar" id="userInitials">U</div>
+        <div class="user-info"><strong id="userName">Usuário</strong><small id="userEmail"></small></div>
+        <button id="logoutButton" class="logout" title="Sair">↪</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">PAINEL DE CONTROLE</p><h2 id="pageTitle">Visão geral</h2></div>
+        <button class="button primary" id="newDiscoButton">+ Novo disco</button>
+      </header>
+
+      <section id="dashboardSection" class="section">
+        <div class="welcome"><div><p class="eyebrow">Bem-vindo a Loja de Discos</p><h3>Seu estoque, em um só lugar.</h3><p class="muted">Acompanhe seus discos e mantenha tudo organizado.</p></div><div class="vinyl" aria-hidden="true">◉</div></div>
+        <div class="stats">
+          <article class="stat-card"><div class="stat-icon purple">◉</div><p>Total de discos cadastrados</p><strong id="totalDiscos">0</strong><small>títulos no catálogo</small></article>
+          <article class="stat-card"><div class="stat-icon orange">▤</div><p>Unidades em estoque</p><strong id="totalUnidades">0</strong><small>unidades disponíveis</small></article>
+          <article class="stat-card"><div class="stat-icon red">!</div><p>Estoque baixo</p><strong id="estoqueBaixo">0</strong><small>abaixo do mínimo</small></article>
+        </div>
+        <div class="panel">
+          <div class="panel-heading"><div><h3>Estoque recente</h3><p class="muted">Discos cadastrados na sua coleção</p></div><button class="text-button" data-go="discos">Ver todos →</button></div>
+          <div class="table-wrap"><table><thead><tr><th>Disco</th><th>Gênero</th><th>Preço de venda</th><th>Estoque</th><th>Status</th></tr></thead><tbody id="recentDiscos"></tbody></table></div>
+        </div>
+      </section>
+
+      <section id="discosSection" class="section hidden">
+        <div class="toolbar"><div><h3>Catálogo de discos</h3><p class="muted">Cadastre, consulte e atualize os produtos.</p></div><button class="button primary" id="newDiscoButton2">+ Novo disco</button></div>
+        <div class="filters"><input id="searchDiscos" type="search" placeholder="Buscar por título ou artista..."><select id="sortDiscos"><option value="">Ordem padrão</option><option value="alfabetica">Ordem alfabética</option></select><button class="button light" id="searchButton">Buscar</button></div>
+        <div class="panel"><div class="table-wrap"><table><thead><tr><th>Disco / artista</th><th>Gênero</th><th>Custo</th><th>Venda</th><th>Estoque</th><th>Status</th><th>Ações</th></tr></thead><tbody id="discosTable"></tbody></table></div></div>
+      </section>
+
+      <section id="movimentacoesSection" class="section hidden">
+        <div class="toolbar"><div><h3>Movimentar estoque</h3><p class="muted">Registre entradas e saídas de unidades.</p></div></div>
+        <div class="movement-layout">
+          <form id="movementForm" class="panel form-panel">
+            <h3>Nova movimentação</h3>
+            <label for="movementDisco">Disco</label><select id="movementDisco" required><option value="">Selecione um disco</option></select>
+            <label for="movementType">Tipo de movimentação</label><select id="movementType" required><option value="entrada">Entrada no estoque</option><option value="saida">Saída do estoque</option></select>
+            <label for="movementQuantity">Quantidade</label><input id="movementQuantity" type="number" min="1" step="1" placeholder="Ex.: 5" required>
+            <label for="movementDate">Data</label><input id="movementDate" type="date" required>
+            <label for="movementNote">Observação (opcional)</label><textarea id="movementNote" rows="3" placeholder="Detalhes da movimentação"></textarea>
+            <button class="button primary full" type="submit">Registrar movimentação</button>
+            <p id="movementMessage" class="message"></p>
+          </form>
+          <div class="panel help-panel"><div class="stat-icon purple">⇄</div><h3>Como funciona?</h3><p><strong>Entrada</strong> adiciona unidades ao estoque.</p><p><strong>Saída</strong> reduz a quantidade disponível. Não é possível retirar mais unidades do que existem.</p><p class="muted">A movimentação fica vinculada ao usuário conectado e atualiza o estoque do disco.</p></div>
+        </div>
+      </section>
+      <p id="globalMessage" class="message global-message"></p>
+    </main>
+  </div>
+
+  <div id="discoModal" class="modal hidden">
+    <div class="modal-backdrop" data-close="true"></div>
+    <form id="discoForm" class="modal-card">
+      <div class="modal-heading"><div><p class="eyebrow">CATÁLOGO</p><h3 id="modalTitle">Cadastrar disco</h3></div><button type="button" class="close-button" id="closeModal">×</button></div>
+      <input type="hidden" id="discoId">
+      <div class="form-grid">
+        <div class="field full-field"><label for="titulo">Título do disco</label><input id="titulo" required maxlength="150" placeholder="Ex.: Nada Como um Dia Após o Outro Dia"></div>
+        <div class="field"><label for="artista">Artista / banda</label><input id="artista" required maxlength="100" placeholder="Nome do artista"></div>
+        <div class="field"><label for="genero">Gênero</label><input id="genero" maxlength="50" placeholder="Funk, Sertanejo, Rock..."></div>
+        <div class="field"><label for="precoCusto">Preço de custo (R$)</label><input id="precoCusto" type="number" min="0" step="0.01" required placeholder="0,00"></div>
+        <div class="field"><label for="precoVenda">Preço de venda (R$)</label><input id="precoVenda" type="number" min="0" step="0.01" required placeholder="0,00"></div>
+        <div class="field"><label for="quantidade">Quantidade em estoque</label><input id="quantidade" type="number" min="0" step="1" required placeholder="0"></div>
+        <div class="field"><label for="estoqueMinimo">Estoque mínimo</label><input id="estoqueMinimo" type="number" min="0" step="1" required placeholder="0"></div>
+      </div>
+      <p id="discoMessage" class="message"></p>
+      <div class="modal-actions"><button type="button" class="button light" id="cancelModal">Cancelar</button><button type="submit" class="button primary">Salvar disco</button></div>
+    </form>
+  </div>
+
+  <div id="confirmModal" class="modal hidden">
+    <div class="modal-backdrop" data-close-confirm="true"></div>
+    <div class="modal-card confirm-card"><div class="modal-heading"><h3>Excluir disco?</h3><button type="button" class="close-button" id="closeConfirm">×</button></div><p class="muted">Essa ação removerá o disco selecionado. Se houver movimentações vinculadas, o banco pode impedir a exclusão ou removê-las conforme suas regras.</p><div class="modal-actions"><button class="button light" id="cancelDelete">Cancelar</button><button class="button danger" id="confirmDelete">Excluir</button></div></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

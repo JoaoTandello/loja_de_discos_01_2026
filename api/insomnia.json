@@ -1,0 +1,231 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-10-23T18:55:00.000Z",
+  "__export_source": " insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "wrk_discos_api",
+      "_type": "workspace",
+      "name": "API Controle de Estoque de Discos",
+      "description": "Requisições para a API Express. Ajuste os caminhos conforme os arquivos src/routes."
+    },
+    {
+      "_id": "env_discos_api",
+      "_type": "environment",
+      "parentId": "wrk_discos_api",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000",
+        "token": "",
+        "id_disco": "1",
+        "id_usuario": "1",
+        "id_movimentacao": "1"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "token",
+          "id_disco",
+          "id_usuario",
+          "id_movimentacao"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1
+    },
+    {
+      "_id": "fld_auth",
+      "_type": "request_group",
+      "parentId": "wrk_discos_api",
+      "name": "Autenticação",
+      "description": "Ajuste o caminho e o corpo de acordo com src/routes/auth_routes."
+    },
+    {
+      "_id": "req_cadastro",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "name": "Cadastrar usuário (AJUSTAR ROTA)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/cadastro",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"João\",\n  \"email\": \"joao@example.com\",\n  \"senha\": \"123456\"\n}"
+      },
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false
+    },
+    {
+      "_id": "req_login",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "name": "Login (AJUSTAR ROTA)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/login",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@example.com\",\n  \"senha\": \"123456\"\n}"
+      },
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false
+    },
+    {
+      "_id": "fld_discos",
+      "_type": "request_group",
+      "parentId": "wrk_discos_api",
+      "name": "Discos",
+      "description": "Ajuste os caminhos conforme src/routes/disco_routes."
+    },
+    {
+      "_id": "req_listar_discos",
+      "_type": "request",
+      "parentId": "fld_discos",
+      "name": "Listar discos (AJUSTAR ROTA)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/discos",
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 1
+    },
+    {
+      "_id": "req_buscar_disco",
+      "_type": "request",
+      "parentId": "fld_discos",
+      "name": "Buscar disco por ID (AJUSTAR ROTA)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/discos/{{ _.id_disco }}",
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 2
+    },
+    {
+      "_id": "req_criar_disco",
+      "_type": "request",
+      "parentId": "fld_discos",
+      "name": "Cadastrar disco (AJUSTAR ROTA)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/discos",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"Exemplo de disco\",\n  \"artista\": \"Artista Exemplo\",\n  \"genero\": \"Funk\",\n  \"preco_custo\": 20.00,\n  \"preco_venda\": 35.00,\n  \"quantidade_estoque\": 10,\n  \"estoque_minimo\": 2\n}"
+      },
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 3
+    },
+    {
+      "_id": "req_atualizar_disco",
+      "_type": "request",
+      "parentId": "fld_discos",
+      "name": "Atualizar disco (AJUSTAR ROTA)",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/discos/{{ _.id_disco }}",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"titulo\": \"Disco atualizado\",\n  \"artista\": \"Artista Exemplo\",\n  \"genero\": \"Sertanejo\",\n  \"preco_custo\": 25.00,\n  \"preco_venda\": 40.00,\n  \"quantidade_estoque\": 12,\n  \"estoque_minimo\": 3\n}"
+      },
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 4
+    },
+    {
+      "_id": "req_excluir_disco",
+      "_type": "request",
+      "parentId": "fld_discos",
+      "name": "Excluir disco (AJUSTAR ROTA)",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/discos/{{ _.id_disco }}",
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 5
+    },
+    {
+      "_id": "fld_movimentacoes",
+      "_type": "request_group",
+      "parentId": "wrk_discos_api",
+      "name": "Movimentações",
+      "description": "Ajuste os caminhos conforme src/routes/movi_routes."
+    },
+    {
+      "_id": "req_listar_mov",
+      "_type": "request",
+      "parentId": "fld_movimentacoes",
+      "name": "Listar movimentações (AJUSTAR ROTA)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/movimentacoes",
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 1
+    },
+    {
+      "_id": "req_criar_mov",
+      "_type": "request",
+      "parentId": "fld_movimentacoes",
+      "name": "Registrar movimentação (AJUSTAR ROTA)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/movimentacoes",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"id_disco\": 1,\n  \"id_usuario\": 1,\n  \"tipo_movimentacao\": \"ENTRADA\",\n  \"quantidade\": 5,\n  \"data_movimentacao\": \"2026-10-23\",\n  \"observacao\": \"Entrada de estoque\"\n}"
+      },
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 2
+    },
+    {
+      "_id": "req_buscar_mov",
+      "_type": "request",
+      "parentId": "fld_movimentacoes",
+      "name": "Buscar movimentação por ID (AJUSTAR ROTA)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/movimentacoes/{{ _.id_movimentacao }}",
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 3
+    }
+  ]
+}

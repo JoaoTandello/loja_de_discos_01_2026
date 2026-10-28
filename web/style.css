@@ -1,0 +1,763 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #edf2f3;
+    --surface: #ffffff;
+    --ink: #183438;
+    --muted: #778b8d;
+    --line: #dce6e6;
+
+    --purple: #167d78;
+    --purple-dark: #105e5b;
+
+    --green: #26865c;
+    --red: #d65353;
+    --orange: #d49b36;
+
+    --shadow: 0 10px 30px rgba(24, 52, 56, 0.07);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: -0.035em;
+}
+
+h2 {
+    font-size: 29px;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.muted {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    font-weight: 800;
+    color: var(--purple);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* BOTÕES */
+
+.button {
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 19px;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.primary {
+    background: var(--purple);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(22, 125, 120, 0.16);
+}
+
+.primary:hover {
+    background: var(--purple-dark);
+}
+
+.light {
+    background: #e7f2f0;
+    color: #176b67;
+}
+
+.light:hover {
+    background: #d8eae7;
+}
+
+.danger {
+    background: #d65353;
+    color: white;
+}
+
+.danger:hover {
+    background: #bd3e3e;
+}
+
+.full {
+    width: 100%;
+}
+
+/* CAMPOS */
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #345357;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #d9e4e4;
+    border-radius: 8px;
+    padding: 12px 14px;
+    background: #fafdfe;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #42a9a0;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(66, 169, 160, 0.13);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* TELA DE LOGIN */
+
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 22px;
+    background:
+        radial-gradient(circle at 5% 10%, #cde6e1 0, transparent 30%),
+        radial-gradient(circle at 95% 95%, #f4e7c8 0, transparent 28%),
+        #edf2f3;
+}
+
+.login-card {
+    width: min(100%, 410px);
+    background: var(--surface);
+    padding: 40px;
+    border: 1px solid #e0e9e8;
+    border-radius: 14px;
+    box-shadow: 0 20px 55px rgba(24, 52, 56, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #167d78, #8dc9a7, #e6bd60);
+}
+
+.brand-mark {
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px 13px 13px 4px;
+    background: var(--purple);
+    color: white;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    margin-bottom: 27px;
+    box-shadow: 0 7px 15px rgba(22, 125, 120, 0.2);
+}
+
+.brand-mark.small {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px 9px 9px 3px;
+    margin: 0;
+    font-size: 12px;
+}
+
+.login-card h1 {
+    font-size: 31px;
+    margin-bottom: 9px;
+}
+
+.login-card .muted {
+    margin-bottom: 27px;
+}
+
+.login-card label:not(:first-of-type) {
+    margin-top: 17px;
+}
+
+.login-card .button {
+    margin-top: 23px;
+}
+
+.message {
+    font-size: 12px;
+    line-height: 1.5;
+    min-height: 16px;
+    margin: 10px 0 0;
+    color: var(--red);
+}
+
+.message.success {
+    color: var(--green);
+}
+
+/* ESTRUTURA PRINCIPAL */
+
+.app {
+    min-height: 100vh;
+}
+
+/* MENU LATERAL */
+
+.sidebar {
+    width: 250px;
+    position: fixed;
+    inset: 0 auto 0 0;
+    background: #183b3e;
+    color: #fff;
+    padding: 28px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    overflow-y: auto;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    margin: 0 8px 51px;
+    color: #fff;
+}
+
+.sidebar .brand-mark {
+    background: #f0c96a;
+    color: #183b3e;
+    box-shadow: none;
+}
+
+.nav-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    font-weight: 800;
+    color: #8eaeae;
+    margin: 0 12px 14px;
+    text-transform: uppercase;
+}
+
+.nav-item {
+    border: 0;
+    background: transparent;
+    color: #b8cecd;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 14px;
+    text-align: left;
+    border-radius: 8px;
+    margin-bottom: 7px;
+    font-weight: 600;
+    width: 100%;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-item span {
+    font-size: 19px;
+    width: 21px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.nav-item:hover {
+    background: #254b4d;
+    color: #fff;
+}
+
+.nav-item.active {
+    background: #d6eee5;
+    color: #17635e;
+    box-shadow: inset 3px 0 #e6bd60;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 19px 6px 0;
+    border-top: 1px solid #345558;
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: #d6eee5;
+    color: #17635e;
+    font-weight: 800;
+}
+
+.user-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.user-info strong {
+    font-size: 12px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-info small {
+    font-size: 10px;
+    color: #9eb8b7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.logout {
+    border: 0;
+    background: transparent;
+    color: #b8cecd;
+    font-size: 20px;
+    transition: color 0.2s;
+}
+
+.logout:hover {
+    color: #f0c96a;
+}
+
+/* CONTEÚDO */
+
+.main {
+    margin-left: 250px;
+    padding: 35px 40px;
+    max-width: 1700px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 31px;
+}
+
+.topbar h2 {
+    color: #183b3e;
+}
+
+/* BANNER DE BOAS-VINDAS */
+
+.welcome {
+    background: #dceee8;
+    border: 1px solid #cce3db;
+    border-left: 5px solid #167d78;
+    border-radius: 12px;
+    padding: 31px 33px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.welcome::after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 25px solid rgba(22, 125, 120, 0.06);
+    border-radius: 50%;
+    right: 80px;
+    top: -95px;
+    pointer-events: none;
+}
+
+.welcome h3 {
+    font-size: 24px;
+    margin-bottom: 9px;
+    color: #183b3e;
+}
+
+.welcome .muted {
+    margin-bottom: 0;
+    color: #557574;
+}
+
+.vinyl {
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    background:
+        repeating-radial-gradient(
+            circle,
+            #183b3e 0 3px,
+            #244e50 4px 6px
+        );
+    color: #f0c96a;
+    display: grid;
+    place-items: center;
+    font-size: 35px;
+    box-shadow: 0 10px 25px rgba(24, 59, 62, 0.17);
+    flex-shrink: 0;
+    margin-right: 12px;
+    border: 5px solid rgba(255, 255, 255, 0.6);
+    z-index: 1;
+}
+
+/* JANELA DE CADASTRO DE DISCOS */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal.hidden {
+    display: none !important;
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(16, 32, 34, 0.65);
+    backdrop-filter: blur(4px);
+}
+
+.modal-card {
+    position: relative;
+    z-index: 1001;
+    width: min(100%, 620px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e0e9e8;
+    border-radius: 16px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+.modal-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.modal-heading h3 {
+    margin: 0;
+    color: #183b3e;
+}
+
+.close-button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    background: #edf2f3;
+    color: #183b3e;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #dceee8;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.full-field {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #344e50;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.confirm-card {
+    width: min(100%, 450px);
+}
+
+.confirm-card p {
+    line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+    .modal {
+        padding: 12px;
+    }
+
+    .modal-card {
+        padding: 20px;
+        max-height: calc(100vh - 24px);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-field {
+        grid-column: auto;
+    }
+
+    .modal-actions {
+        flex-wrap: wrap;
+    }
+}
+
+/* TABELA DE DISCOS — VINYL CONTROL */
+
+.table-container {
+    width: 100%;
+    margin-top: 24px;
+    background: #ffffff;
+    border: 1px solid #dce6e6;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(24, 52, 56, 0.05);
+}
+
+/* Área de rolagem para telas menores */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #ffffff;
+    font-size: 13px;
+    text-align: left;
+}
+
+thead {
+    background: #f3f8f7;
+}
+
+thead th {
+    padding: 17px 16px;
+    color: #426366;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    border-bottom: 1px solid #dce6e6;
+}
+
+tbody tr {
+    border-bottom: 1px solid #edf2f2;
+    transition: background 0.2s;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: #f7fbfa;
+}
+
+tbody td {
+    padding: 17px 16px;
+    color: #40595b;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Nome do disco e artista */
+tbody td:first-child {
+    min-width: 190px;
+    white-space: normal;
+    line-height: 1.5;
+    color: #183b3e;
+    font-weight: 700;
+}
+
+/* Valores */
+tbody td:nth-child(3),
+tbody td:nth-child(4) {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Estoque */
+tbody td:nth-child(5) {
+    text-align: center;
+    font-weight: 700;
+    color: #183b3e;
+}
+
+/* Status */
+.status,
+.status-disponivel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 11px;
+    border-radius: 20px;
+    background: #e5f5eb;
+    color: #26865c;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Coluna de ações */
+tbody td:last-child {
+    min-width: 115px;
+}
+
+tbody td:last-child button {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    border: 1px solid #dce6e6;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #167d78;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+tbody td:last-child button:hover {
+    background: #e7f2f0;
+    border-color: #a9d4ce;
+    transform: translateY(-1px);
+}
+
+/* Botão de excluir */
+tbody td:last-child button:last-child {
+    color: #d65353;
+}
+
+tbody td:last-child button:last-child:hover {
+    background: #fff0f0;
+    border-color: #f0caca;
+}
+
+/* Mensagem de cadastro */
+.message.success {
+    margin-top: 16px;
+    padding: 12px 15px;
+    border: 1px solid #cce8d6;
+    border-radius: 9px;
+    background: #eff9f2;
+    color: #26865c;
+    font-size: 12px;
+}
+
+/* Busca e filtros */
+.table-container input,
+.table-container select {
+    min-width: 150px;
+}
+
+/* Ajustes para celular */
+@media (max-width: 768px) {
+    .table-container {
+        border-radius: 10px;
+    }
+
+    table {
+        min-width: 760px;
+    }
+
+    thead th,
+    tbody td {
+        padding: 13px 12px;
+    }
+}
